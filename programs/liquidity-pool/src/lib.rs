@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("YourProgramIDHere");
+declare_id!("");
 
 pub mod liquidity_pool {
     use super::*;
