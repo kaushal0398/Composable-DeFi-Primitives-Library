@@ -81,6 +81,12 @@ pub struct Staking {
     pub last_update_time: u64,
 }
 
+pub struct UserStake {
+    pub amount: u64,
+    pub pending_rewards: u64,
+    pub lock_end_time: i64,
+}
+
 pub enum ErrorCode {
     #[msg("Staking lock period has not ended.")]
     LockPeriodNotEnded,
