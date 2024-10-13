@@ -69,3 +69,28 @@ fn update_rewards(staking: &mut Staking, user_stake: &mut UserStake) -> Result<(
         let new_rewards = user_stake.amount as u128 * time_elapsed as u128 * staking.reward_rate as u128 / staking.total_staked as u128;
         user_stake.pending_rewards += new_rewards as u64;
     }
+
+    staking.last_update_time = current_time;
+    Ok(())
+}
+
+#[account]
+pub struct Staking {
+    pub bump: u8,
+    pub total_staked: u64,
+    pub reward_rate: u64,
+    pub last_update_time: u64,
+}
+
+#[account]
+pub struct UserStake {
+    pub amount: u64,
+    pub pending_rewards: u64,
+    pub lock_end_time: i64,
+}
+
+#[error_code]
+pub enum ErrorCode {
+    #[msg("Staking lock period has not ended.")]
+    LockPeriodNotEnded,
+}
