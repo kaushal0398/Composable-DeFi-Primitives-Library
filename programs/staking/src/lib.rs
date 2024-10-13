@@ -16,3 +16,19 @@ pub mod staking {
         Ok(())
     }
 
+    pub fn stake_with_time_lock(ctx: Context<Stake>, amount: u64, lock_duration: u64) -> Result<()> {
+        let staking = &mut ctx.accounts.staking;
+        let user_stake = &mut ctx.accounts.user_stake;
+
+        token::transfer(ctx.accounts.transfer_to_staking_ctx(), amount)?;
+
+        user_stake.amount += amount;
+        user_stake.lock_end_time = Clock::get()?.unix_timestamp + lock_duration as i64;
+        staking.total_staked += amount;
+
+        update_rewards(staking, user_stake)?;
+
+        Ok(())
+    }
+
+    
