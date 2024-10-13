@@ -31,4 +31,11 @@ pub mod staking {
         Ok(())
     }
 
-    
+    pub fn unstake_with_time_lock(ctx: Context<Unstake>, amount: u64) -> Result<()> {
+        let user_stake = &mut ctx.accounts.user_stake;
+
+        let current_time = Clock::get()?.unix_timestamp;
+        if current_time < user_stake.lock_end_time {
+            return Err(ErrorCode::LockPeriodNotEnded.into());
+        }
+
