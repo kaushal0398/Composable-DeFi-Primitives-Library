@@ -60,3 +60,12 @@ pub mod staking {
         Ok(())
     }
 }
+
+fn update_rewards(staking: &mut Staking, user_stake: &mut UserStake) -> Result<()> {
+    let current_time = Clock::get()?.unix_timestamp;
+    let time_elapsed = current_time - staking.last_update_time;
+
+    if staking.total_staked > 0 {
+        let new_rewards = user_stake.amount as u128 * time_elapsed as u128 * staking.reward_rate as u128 / staking.total_staked as u128;
+        user_stake.pending_rewards += new_rewards as u64;
+    }
