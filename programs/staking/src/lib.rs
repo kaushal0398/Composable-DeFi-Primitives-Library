@@ -47,3 +47,7 @@ pub mod staking {
 
         Ok(())
     }
+
+    pub fn claim_rewards(ctx: Context<ClaimRewards>) -> Result<()> {
+        let staking = &mut ctx.accounts.staking;
+        let user_stake = &mut ctx.accounts.user_stake;
