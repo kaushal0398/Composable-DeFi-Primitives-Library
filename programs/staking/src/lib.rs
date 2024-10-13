@@ -39,3 +39,4 @@ pub mod staking {
             return Err(ErrorCode::LockPeriodNotEnded.into());
         }
 
+        token::transfer(ctx.accounts.transfer_from_staking_ctx(), amount)?;
