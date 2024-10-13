@@ -40,3 +40,10 @@ pub mod staking {
         }
 
         token::transfer(ctx.accounts.transfer_from_staking_ctx(), amount)?;
+
+        user_stake.amount -= amount;
+        staking.total_staked -= amount;
+        update_rewards(staking, user_stake)?;
+
+        Ok(())
+    }
