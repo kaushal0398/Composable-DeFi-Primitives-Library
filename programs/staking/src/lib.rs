@@ -74,7 +74,6 @@ fn update_rewards(staking: &mut Staking, user_stake: &mut UserStake) -> Result<(
     Ok(())
 }
 
-#[account]
 pub struct Staking {
     pub bump: u8,
     pub total_staked: u64,
@@ -82,15 +81,3 @@ pub struct Staking {
     pub last_update_time: u64,
 }
 
-#[account]
-pub struct UserStake {
-    pub amount: u64,
-    pub pending_rewards: u64,
-    pub lock_end_time: i64,
-}
-
-#[error_code]
-pub enum ErrorCode {
-    #[msg("Staking lock period has not ended.")]
-    LockPeriodNotEnded,
-}
