@@ -53,9 +53,6 @@ pub mod staking {
         let user_stake = &mut ctx.accounts.user_stake;
 
         update_rewards(staking, user_stake)?;
-        token::transfer(ctx.accounts.transfer_rewards_ctx(), user_stake.pending_rewards)?;
-
-        user_stake.pending_rewards = 0;
 
         Ok(())
     }
