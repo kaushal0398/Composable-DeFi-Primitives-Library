@@ -29,3 +29,18 @@ describe('Liquidity Pool Tests', () => {
       signers: [poolAccount],
     });
   });
+
+  it('Add Liquidity to the Pool', async () => {
+    const amountA = new anchor.BN(1000);
+    const amountB = new anchor.BN(500);
+
+    await program.rpc.addLiquidity(amountA, amountB, {
+      accounts: {
+        pool: poolAccount.publicKey,
+        tokenA: tokenAAccount.publicKey,
+        tokenB: tokenBAccount.publicKey,
+        lpMint: lpTokenMint.publicKey,
+        user: provider.wallet.publicKey,
+        tokenProgram: anchor.utils.token.TOKEN_PROGRAM_ID,
+      },
+    });
