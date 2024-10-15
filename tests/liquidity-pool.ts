@@ -44,3 +44,9 @@ describe('Liquidity Pool Tests', () => {
         tokenProgram: anchor.utils.token.TOKEN_PROGRAM_ID,
       },
     });
+
+    const poolData = await program.account.pool.fetch(poolAccount.publicKey);
+    assert.equal(poolData.tokenAReserve.toNumber(), 1000);
+    assert.equal(poolData.tokenBReserve.toNumber(), 500);
+  });
+});
