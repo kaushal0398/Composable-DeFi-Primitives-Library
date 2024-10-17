@@ -13,5 +13,20 @@ describe('Staking Tests', () => {
   let lpTokenAccount: anchor.web3.Keypair;
   let rewardTokenAccount: anchor.web3.Keypair;
   let userStakeAccount: anchor.web3.Keypair;
-    )
-}
+
+  before(async () => {
+    stakingAccount = anchor.web3.Keypair.generate();
+    lpTokenAccount = anchor.web3.Keypair.generate();
+    rewardTokenAccount = anchor.web3.Keypair.generate();
+    userStakeAccount = anchor.web3.Keypair.generate();
+
+    await program.rpc.initializeStaking({
+      accounts: {
+        staking: stakingAccount.publicKey,
+        authority: provider.wallet.publicKey,
+        systemProgram: SystemProgram.programId,
+      },
+      signers: [stakingAccount],
+    });
+  });
+});
