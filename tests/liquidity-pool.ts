@@ -23,7 +23,7 @@ describe('Liquidity Pool Tests', () => {
     await program.rpc.initializePool({
       accounts: {
         pool: poolAccount.publicKey,
-        authority: provider.wallet.publicKey,
+        authority: provider.wallet,
         systemProgram: SystemProgram.programId,
       },
       signers: [poolAccount],
