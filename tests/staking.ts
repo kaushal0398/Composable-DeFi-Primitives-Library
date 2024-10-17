@@ -29,4 +29,26 @@ describe('Staking Tests', () => {
       signers: [stakingAccount],
     });
   });
+
+  it('Stake LP Tokens with Time Lock', async () => {
+    const stakeAmount = new anchor.BN(1000);
+    const lockDuration = new anchor.BN(86400); // 1 day
+
+    await program.rpc.stakeWithTimeLock(stakeAmount, lockDuration, {
+      accounts: {
+        staking: stakingAccount.publicKey,
+        userStake: userStakeAccount.publicKey,
+        lpToken: lpTokenAccount.publicKey,
+        user: provider.wallet.publicKey,
+        tokenProgram: anchor.utils.token.TOKEN_PROGRAM_ID,
+      },
+      signers: [userStakeAccount],
+    });
+
+    const stakingData = await program.account.staking.fetch(stakingAccount.publicKey);
+    const userStakeData = await program.account.userStake.fetch(userStakeAccount.publicKey);
+
+    assert.equal(stakingData.totalStaked.toNumber(), 1000);
+    assert.equal(userStakeData.amount.toNumber(), 1000);
+  });
 });
