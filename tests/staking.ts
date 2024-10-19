@@ -24,6 +24,7 @@ describe('Staking Tests', () => {
       accounts: {
         staking: stakingAccount.publicKey,
         authority: provider.wallet.publicKey,
+        systemProgram: SystemProgram.programId,
       },
       signers: [stakingAccount],
     });
