@@ -46,7 +46,6 @@ describe('Staking Tests', () => {
     });
 
     const stakingData = await program.account.staking.fetch(stakingAccount.publicKey);
-    const userStakeData = await program.account.userStake.fetch(userStakeAccount.publicKey);
 
     assert.equal(stakingData.totalStaked.toNumber(), 1000);
     assert.equal(userStakeData.amount.toNumber(), 1000);
