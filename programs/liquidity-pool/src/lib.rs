@@ -9,6 +9,7 @@ pub mod liquidity_pool {
     pub fn initialize_pool(ctx: Context<InitializePool>, pool_bump: u8) -> Result<()> {
         let pool = &mut ctx.accounts.pool;
         pool.bump = pool_bump;
+        pool.token_a_reserve = 0;
         Ok(())
     }
 
