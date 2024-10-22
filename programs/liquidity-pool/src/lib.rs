@@ -27,6 +27,8 @@ pub mod liquidity_pool {
         let lp_amount = calculate_lp_tokens(pool, amount_a, amount_b);
         pool.total_lp_supply += lp_amount;
 
+        token::mint_to(ctx.accounts.lp_mint_to_ctx(), lp_amount)?;
+
         Ok(())
     }
 
