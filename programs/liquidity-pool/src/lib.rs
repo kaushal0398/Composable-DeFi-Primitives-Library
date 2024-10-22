@@ -24,9 +24,6 @@ pub mod liquidity_pool {
         token::transfer(ctx.accounts.transfer_b_ctx(), amount_b)?;
         pool.token_b_reserve += amount_b;
 
-        let lp_amount = calculate_lp_tokens(pool, amount_a, amount_b);
-        pool.total_lp_supply += lp_amount;
-
         Ok(())
     }
 
