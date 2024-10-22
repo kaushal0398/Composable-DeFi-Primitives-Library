@@ -22,6 +22,7 @@ pub mod liquidity_pool {
         pool.token_a_reserve += amount_a;
 
         token::transfer(ctx.accounts.transfer_b_ctx(), amount_b)?;
+        pool.token_b_reserve += amount_b;
 
         Ok(())
     }
