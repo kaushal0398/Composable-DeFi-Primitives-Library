@@ -41,7 +41,6 @@ pub mod liquidity_pool {
         let amount_b = (lp_amount as u128 * pool.token_b_reserve as u128 / pool.total_lp_supply as u128) as u64;
 
         pool.token_a_reserve -= amount_a;
-        pool.token_b_reserve -= amount_b;
         pool.total_lp_supply -= lp_amount;
 
         token::transfer(ctx.accounts.transfer_to_user_a_ctx(), amount_a)?;
