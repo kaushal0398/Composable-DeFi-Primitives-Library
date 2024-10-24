@@ -45,7 +45,6 @@ pub mod liquidity_pool {
         pool.total_lp_supply -= lp_amount;
 
         token::transfer(ctx.accounts.transfer_to_user_a_ctx(), amount_a)?;
-        token::transfer(ctx.accounts.transfer_to_user_b_ctx(), amount_b)?;
 
         Ok(())
     }
