@@ -18,6 +18,7 @@ describe('Liquidity Pool Tests', () => {
     poolAccount = anchor.web3.Keypair.generate();
     tokenAAccount = anchor.web3.Keypair.generate();
     tokenBAccount = anchor.web3.Keypair.generate();
+    lpTokenMint = anchor.web3.Keypair.generate();
 
     await program.rpc.initializePool({
       accounts: {
