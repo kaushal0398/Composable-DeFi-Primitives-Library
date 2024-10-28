@@ -10,7 +10,6 @@ pub mod liquidity_pool {
         let pool = &mut ctx.accounts.pool;
         pool.bump = pool_bump;
         pool.token_a_reserve = 0;
-        pool.token_b_reserve = 0;
         pool.total_lp_supply = 0;
         Ok(())
     }
