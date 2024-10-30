@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-use anchor_spl::token::{self, TokenAccount, Token};
+use anchor_spl::token::{self, TokenAccount, Transfer, Token};
 
 declare_id!("");
 
