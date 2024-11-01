@@ -1,5 +1,5 @@
 import * as anchor from '@project-serum/anchor';
-import { Program } from '@project-serum/anchor';
+import { Program } from 
 import { PublicKey, SystemProgram } from '@solana/web3.js';
 import { assert } from 'chai';
 
