@@ -1,6 +1,10 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token::{self, TokenAccount, Transfer, Mint, Token};
 
+
+declare_id!("");
+
+
 pub mod liquidity_pool {
     use super::*;
 
