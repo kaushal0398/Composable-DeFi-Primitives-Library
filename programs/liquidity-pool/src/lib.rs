@@ -85,6 +85,7 @@ fn calculate_lp_tokens(pool: &Pool, amount_a: u64, amount_b: u64) -> u64 {
 
 fn calculate_swap_amount(reserve_in: u64, reserve_out: u64, amount_in: u64) -> u64 {
     let amount_in_with_fee = amount_in * 997 / 1000;
+    let numerator = amount_in_with_fee * reserve_out;
     let denominator = reserve_in + amount_in_with_fee;
     numerator / denominator
 }
